@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="516pt" height="104pt" viewBox="0 0 516 104" role="img">
+<title>控制层主效应与步预算敏感性（成功率，0–1）</title>
+<desc>由 make_figs.py 从发布的 CSV 生成；所有数值由同一次运行打印到 stdout。</desc>
+<line x1="28.000" y1="82.000" x2="246.000" y2="82.000" stroke="#000000" stroke-width="0.50"/>
+<line x1="28.000" y1="13.000" x2="28.000" y2="82.000" stroke="#000000" stroke-width="0.50"/>
+<line x1="28.000" y1="47.500" x2="246.000" y2="47.500" stroke="#dcdcdc" stroke-width="0.30" stroke-dasharray="1 1"/>
+<line x1="28.000" y1="13.000" x2="246.000" y2="13.000" stroke="#dcdcdc" stroke-width="0.30" stroke-dasharray="1 1"/>
+<line x1="25.800" y1="82.000" x2="28.000" y2="82.000" stroke="#000000" stroke-width="0.40"/>
+<text x="24.800" y="84.100" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="end" fill="#000000">0</text>
+<line x1="25.800" y1="47.500" x2="28.000" y2="47.500" stroke="#000000" stroke-width="0.40"/>
+<text x="24.800" y="49.600" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="end" fill="#000000">.5</text>
+<line x1="25.800" y1="13.000" x2="28.000" y2="13.000" stroke="#000000" stroke-width="0.40"/>
+<text x="24.800" y="15.100" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="end" fill="#000000">1</text>
+<text x="8.600" y="47.500" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="middle" fill="#000000" transform="rotate(-90 8.600 47.500)">成功率</text>
+<rect x="37.433" y="25.866" width="9.000" height="56.134" fill="#e8e8e8" stroke="#000000" stroke-width="0.40"/>
+<rect x="48.633" y="19.684" width="9.000" height="62.316" fill="#c8c8c8" stroke="#000000" stroke-width="0.40"/>
+<rect x="59.833" y="18.463" width="9.000" height="63.537" fill="#a6a6a6" stroke="#000000" stroke-width="0.40"/>
+<rect x="71.033" y="21.913" width="9.000" height="60.087" fill="#6f6f6f" stroke="#000000" stroke-width="0.40"/>
+<rect x="82.233" y="26.512" width="9.000" height="55.488" fill="#2b2b2b" stroke="#000000" stroke-width="0.40"/>
+<line x1="36.433" y1="22.487" x2="92.233" y2="22.487" stroke="#000000" stroke-width="0.60"/>
+<rect x="55.702" y="15.287" width="17.263" height="6.630" fill="#ffffff" stroke="none" stroke-width="0.60"/>
+<text x="64.333" y="20.487" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.50" text-anchor="middle" fill="#000000" font-weight="bold">0.863</text>
+<text x="64.333" y="89.000" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="middle" fill="#000000">near-RT</text>
+<rect x="110.100" y="42.613" width="9.000" height="39.387" fill="#e8e8e8" stroke="#000000" stroke-width="0.40"/>
+<rect x="121.300" y="28.525" width="9.000" height="53.475" fill="#c8c8c8" stroke="#000000" stroke-width="0.40"/>
+<rect x="132.500" y="30.250" width="9.000" height="51.750" fill="#a6a6a6" stroke="#000000" stroke-width="0.40"/>
+<rect x="143.700" y="36.288" width="9.000" height="45.712" fill="#6f6f6f" stroke="#000000" stroke-width="0.40"/>
+<rect x="154.900" y="44.266" width="9.000" height="37.734" fill="#2b2b2b" stroke="#000000" stroke-width="0.40"/>
+<line x1="109.100" y1="36.388" x2="164.900" y2="36.388" stroke="#000000" stroke-width="0.60"/>
+<rect x="128.369" y="29.188" width="17.263" height="6.630" fill="#ffffff" stroke="none" stroke-width="0.60"/>
+<text x="137.000" y="34.388" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.50" text-anchor="middle" fill="#000000" font-weight="bold">0.661</text>
+<text x="137.000" y="89.000" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="middle" fill="#000000">non-RT</text>
+<rect x="182.767" y="42.613" width="9.000" height="39.387" fill="#e8e8e8" stroke="#000000" stroke-width="0.40"/>
+<line x1="193.967" y1="81.400" x2="202.967" y2="81.400" stroke="#000000" stroke-width="0.60"/>
+<line x1="205.167" y1="81.400" x2="214.167" y2="81.400" stroke="#000000" stroke-width="0.60"/>
+<rect x="216.367" y="36.288" width="9.000" height="45.712" fill="#6f6f6f" stroke="#000000" stroke-width="0.40"/>
+<rect x="227.567" y="72.800" width="9.000" height="9.200" fill="#2b2b2b" stroke="#000000" stroke-width="0.40"/>
+<line x1="181.767" y1="63.140" x2="237.567" y2="63.140" stroke="#000000" stroke-width="0.60"/>
+<rect x="201.035" y="55.940" width="17.263" height="6.630" fill="#ffffff" stroke="none" stroke-width="0.60"/>
+<text x="209.667" y="61.140" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.50" text-anchor="middle" fill="#000000" font-weight="bold">0.273</text>
+<text x="209.667" y="89.000" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="middle" fill="#000000">SMO/intent</text>
+<text x="137.000" y="98.000" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="middle" fill="#000000">控制层</text>
+<rect x="4.000" y="5.000" width="6.000" height="6.000" fill="#e8e8e8" stroke="#000000" stroke-width="0.40"/>
+<text x="11.600" y="10.400" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="start" fill="#000000">S1</text>
+<rect x="30.000" y="5.000" width="6.000" height="6.000" fill="#c8c8c8" stroke="#000000" stroke-width="0.40"/>
+<text x="37.600" y="10.400" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="start" fill="#000000">S2</text>
+<rect x="56.000" y="5.000" width="6.000" height="6.000" fill="#a6a6a6" stroke="#000000" stroke-width="0.40"/>
+<text x="63.600" y="10.400" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="start" fill="#000000">S3</text>
+<rect x="82.000" y="5.000" width="6.000" height="6.000" fill="#6f6f6f" stroke="#000000" stroke-width="0.40"/>
+<text x="89.600" y="10.400" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="start" fill="#000000">S4</text>
+<rect x="108.000" y="5.000" width="6.000" height="6.000" fill="#2b2b2b" stroke="#000000" stroke-width="0.40"/>
+<text x="115.600" y="10.400" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="start" fill="#000000">S5</text>
+<line x1="294.000" y1="82.000" x2="508.000" y2="82.000" stroke="#000000" stroke-width="0.50"/>
+<line x1="294.000" y1="13.000" x2="294.000" y2="82.000" stroke="#000000" stroke-width="0.50"/>
+<line x1="294.000" y1="47.500" x2="508.000" y2="47.500" stroke="#dcdcdc" stroke-width="0.30" stroke-dasharray="1 1"/>
+<line x1="294.000" y1="13.000" x2="508.000" y2="13.000" stroke="#dcdcdc" stroke-width="0.30" stroke-dasharray="1 1"/>
+<line x1="291.800" y1="82.000" x2="294.000" y2="82.000" stroke="#000000" stroke-width="0.40"/>
+<text x="290.800" y="84.100" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="end" fill="#000000">0</text>
+<line x1="291.800" y1="47.500" x2="294.000" y2="47.500" stroke="#000000" stroke-width="0.40"/>
+<text x="290.800" y="49.600" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="end" fill="#000000">.5</text>
+<line x1="291.800" y1="13.000" x2="294.000" y2="13.000" stroke="#000000" stroke-width="0.40"/>
+<text x="290.800" y="15.100" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="end" fill="#000000">1</text>
+<text x="275.000" y="47.500" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="middle" fill="#000000" transform="rotate(-90 275.000 47.500)">成功率</text>
+<line x1="294.000" y1="82.000" x2="294.000" y2="84.200" stroke="#000000" stroke-width="0.40"/>
+<text x="294.000" y="89.000" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="middle" fill="#000000">3</text>
+<line x1="347.500" y1="82.000" x2="347.500" y2="84.200" stroke="#000000" stroke-width="0.40"/>
+<text x="347.500" y="89.000" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="middle" fill="#000000">4</text>
+<line x1="401.000" y1="82.000" x2="401.000" y2="84.200" stroke="#000000" stroke-width="0.40"/>
+<text x="401.000" y="89.000" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="middle" fill="#000000">6</text>
+<line x1="454.500" y1="82.000" x2="454.500" y2="84.200" stroke="#000000" stroke-width="0.40"/>
+<text x="454.500" y="89.000" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="middle" fill="#000000">10</text>
+<line x1="508.000" y1="82.000" x2="508.000" y2="84.200" stroke="#000000" stroke-width="0.40"/>
+<text x="508.000" y="89.000" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="middle" fill="#000000">20</text>
+<text x="401.000" y="98.000" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="middle" fill="#000000">步预算</text>
+<polyline points="294.000,28.554 347.500,22.832 401.000,16.220 454.500,13.546 508.000,13.086" fill="none" stroke="#000000" stroke-width="0.90" stroke-linejoin="round"/>
+<circle cx="294.000" cy="28.554" r="1.800" fill="#000000" stroke="#000000" stroke-width="0.40"/>
+<circle cx="347.500" cy="22.832" r="1.800" fill="#000000" stroke="#000000" stroke-width="0.40"/>
+<circle cx="401.000" cy="16.220" r="1.800" fill="#000000" stroke="#000000" stroke-width="0.40"/>
+<circle cx="454.500" cy="13.546" r="1.800" fill="#000000" stroke="#000000" stroke-width="0.40"/>
+<circle cx="508.000" cy="13.086" r="1.800" fill="#000000" stroke="#000000" stroke-width="0.40"/>
+<line x1="276.600" y1="8.000" x2="284.600" y2="8.000" stroke="#000000" stroke-width="0.90"/>
+<circle cx="280.600" cy="8.000" r="1.600" fill="#000000" stroke="#000000" stroke-width="0.40"/>
+<text x="286.200" y="10.400" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="start" fill="#000000">near-RT 0.999</text>
+<polyline points="294.000,37.754 347.500,37.754 401.000,27.030 454.500,19.555 508.000,19.038" fill="none" stroke="#000000" stroke-width="0.90" stroke-linejoin="round" stroke-dasharray="4 1.6"/>
+<rect x="292.200" y="35.954" width="3.600" height="3.600" fill="#ffffff" stroke="#000000" stroke-width="0.40"/>
+<rect x="345.700" y="35.954" width="3.600" height="3.600" fill="#ffffff" stroke="#000000" stroke-width="0.40"/>
+<rect x="399.200" y="25.230" width="3.600" height="3.600" fill="#ffffff" stroke="#000000" stroke-width="0.40"/>
+<rect x="452.700" y="17.755" width="3.600" height="3.600" fill="#ffffff" stroke="#000000" stroke-width="0.40"/>
+<rect x="506.200" y="17.238" width="3.600" height="3.600" fill="#ffffff" stroke="#000000" stroke-width="0.40"/>
+<line x1="328.882" y1="8.000" x2="336.882" y2="8.000" stroke="#000000" stroke-width="0.90" stroke-dasharray="4 1.6"/>
+<rect x="331.282" y="6.400" width="3.200" height="3.200" fill="#ffffff" stroke="#000000" stroke-width="0.40"/>
+<text x="338.482" y="10.400" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="start" fill="#000000">non-RT 0.912</text>
+<polyline points="294.000,82.000 347.500,37.754 401.000,37.754 454.500,21.395 508.000,19.383" fill="none" stroke="#000000" stroke-width="0.90" stroke-linejoin="round" stroke-dasharray="1.2 1.6"/>
+<polygon points="294.000,79.750 292.020,83.530 295.980,83.530" fill="#ffffff" stroke="#000000" stroke-width="0.40"/>
+<polygon points="347.500,35.504 345.520,39.284 349.480,39.284" fill="#ffffff" stroke="#000000" stroke-width="0.40"/>
+<polygon points="401.000,35.504 399.020,39.284 402.980,39.284" fill="#ffffff" stroke="#000000" stroke-width="0.40"/>
+<polygon points="454.500,19.145 452.520,22.925 456.480,22.925" fill="#ffffff" stroke="#000000" stroke-width="0.40"/>
+<polygon points="508.000,17.133 506.020,20.913 509.980,20.913" fill="#ffffff" stroke="#000000" stroke-width="0.40"/>
+<line x1="379.166" y1="8.000" x2="387.166" y2="8.000" stroke="#000000" stroke-width="0.90" stroke-dasharray="1.2 1.6"/>
+<polygon points="383.166,6.000 381.406,9.360 384.926,9.360" fill="#ffffff" stroke="#000000" stroke-width="0.40"/>
+<text x="388.766" y="10.400" font-family="Noto Sans CJK SC, Helvetica, Arial, sans-serif" font-size="6.00" text-anchor="start" fill="#000000">SMO/intent 0.907</text>
+</svg>

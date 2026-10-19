@@ -12,7 +12,7 @@
 研究固定任务、harness 配置与控制器，**只改变智能体执行所在的控制层**，
 而「层」纯粹由**决策节奏**（decision cadence）与**遥测陈旧度**（telemetry staleness）定义。
 
-![控制层一次固定了两件事](docs/figures/layers.png)
+![控制层一次固定了两件事](docs/figures/layers-zh.png)
 
 ---
 
@@ -38,7 +38,7 @@ python3 run_demo.py demo-live
 现场重算整项析因实验（笔记本上约 9 秒），打印层表，再打印已发布的语言模型表。
 每一个打印出来的数字，要么是当场重算的，要么读自随附的 CSV。
 
-![核心结果](docs/figures/result.png)
+![核心结果](docs/figures/result-zh.png)
 
 *左：每层的各场景成功率与合并均值。右：步预算扫描 —— 预算不再成为约束时，三层收敛。*
 
