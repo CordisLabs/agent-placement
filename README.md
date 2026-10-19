@@ -63,8 +63,10 @@ carries the layer, the seed, the scenario and the harness configuration.
 | `out/episodes.csv` | 14,400 | Deterministic controller, 48 harness configs × 3 layers × 5 faults × 20 seeds |
 | `out/budget_sensitivity.csv` | 36,000 | Step-budget sweep |
 | `out/focused.csv` | 5,000 | Pre-registered contrast set |
-| `out/llm_arm_scoped3.csv` | 150 | 27B language model at the near-RT layer |
-| `out/llm_layer_qwen2-5-7b_scoped3_*.csv` | 450 | 7B language model at all three layers |
+| `out/llm_arm_scoped3.csv` | 150 | qwen3.8:27B at the near-RT layer |
+| `out/llm_layer_qwen2-5-7b_scoped3_*.csv` | 450 | qwen2.5:7B at all three layers |
+| `out/llm_layer_qwen2-5-14b_scoped3_*.csv` | 450 | qwen2.5:14B at all three layers |
+| `out/llm_layer_qwen3-8-27b-q4-K-M_scoped3_*.csv` | 300 | qwen3.8:27B at non-RT and SMO/intent |
 | `out/decoupled_grid.csv` | 43,200 | The full 3×3 decoupled grid over (cadence, staleness); n=4,800 per cell |
 | `out/crossdomain_grid.csv` | 103,680 | **Cross-domain grid**: `domain` column selects packet (43,200) or queue (60,480); layers given as `(cad, stale)` pairs |
 | `out/water_episodes.csv` | 14,400 | Second physical domain: water distribution network |
