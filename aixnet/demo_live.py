@@ -144,7 +144,10 @@ def render(seeds: int = 40, out_dir: str = "out") -> str:
     if ok:
         n = list(live["layers"].values())[0][2]
         add("[LIVE] deterministic controller, recomputed on this laptop just now")
-        add(f"       {live.get('configs', 48)} harness configs x 3 placements x 5 scenarios "
+        # `configs` 已经含了 layer 这个因子（48 个 harness 组合 x 3 层 = 144），
+        # 所以这里不能再说 "x 3 placements"，否则读起来是 144 x 3 = 43200。
+        add(f"       ({live.get('configs', 144) // 3} harness configs x 3 layers"
+            f" = {live.get('configs', 144)} cells) x 5 scenarios "
             f"x {seeds} seeds")
         add(f"       = {live.get('episodes', n * 3)} episodes; {n} per placement")
         add("")
