@@ -16,6 +16,35 @@ varies **only the control layer** at which an agent executes, defined purely by
 
 ---
 
+## Paper
+
+**[AIxNET2026-Chuang.pdf](paper/AIxNET2026-Chuang.pdf)** — the three-page paper
+this artifact accompanies.
+
+> Richard Chuang. *Where Should the Agent Live? A Controller-Fixed Factorial
+> Study of Control-Layer Placement for Network Operations Agents.*
+> IEEE International Conference on Interconnected AI and Networks (AIxNET),
+> Paris, France, 23–25 November 2026.
+
+```bibtex
+@inproceedings{chuang2026placement,
+  author    = {Chuang, Richard},
+  title     = {Where Should the Agent Live? A Controller-Fixed Factorial
+               Study of Control-Layer Placement for Network Operations Agents},
+  booktitle = {IEEE International Conference on Interconnected AI and Networks
+               (AIxNET)},
+  address   = {Paris, France},
+  month     = nov,
+  year      = {2026}
+}
+```
+
+A substantially extended version of this work is under review elsewhere.
+Everything in this repository reproduces the AIxNET paper's results; nothing
+here depends on the extended version.
+
+---
+
 ## Requirements
 
 **Python 3 standard library only.** No network, no API key, no GPU, no container,

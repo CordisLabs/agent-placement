@@ -16,6 +16,33 @@
 
 ---
 
+## 论文
+
+**[AIxNET2026-Chuang.pdf](paper/AIxNET2026-Chuang.pdf)** —— 本 artifact 对应的三页论文。
+
+> 庄昭雄（Richard Chuang）. *Where Should the Agent Live? A Controller-Fixed
+> Factorial Study of Control-Layer Placement for Network Operations Agents.*
+> IEEE International Conference on Interconnected AI and Networks (AIxNET)，
+> 法国巴黎，2026 年 11 月 23–25 日。
+
+```bibtex
+@inproceedings{chuang2026placement,
+  author    = {Chuang, Richard},
+  title     = {Where Should the Agent Live? A Controller-Fixed Factorial
+               Study of Control-Layer Placement for Network Operations Agents},
+  booktitle = {IEEE International Conference on Interconnected AI and Networks
+               (AIxNET)},
+  address   = {Paris, France},
+  month     = nov,
+  year      = {2026}
+}
+```
+
+本工作的扩展版正在别处审稿中。本仓库中的一切都能复现 AIxNET 这篇论文的结果，
+不依赖扩展版。
+
+---
+
 ## 环境要求
 
 **只用 Python 3 标准库。** 不需要网络、API key、GPU、容器，也不需要任何第三方包。
