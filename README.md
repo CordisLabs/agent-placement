@@ -77,6 +77,28 @@ step-budget sweep — once the budget stops binding, the three layers converge.*
 
 ---
 
+## Verify every number
+
+```bash
+python3 verify_numbers.py --en --verbose
+```
+
+Re-derives all 112 headline numbers from the raw per-episode CSVs and compares
+each against the value printed in the paper.
+
+```
+PASS  112
+FAIL  0
+
+All consistent — the paper text can be trusted.
+```
+
+Each line shows the recomputed value on the left and the paper's value on the
+right; a difference above `1e-4` counts as a failure. The summary is available in
+Chinese without `--en`, and the per-check listing needs `--verbose`.
+
+---
+
 ## What it reproduces
 
 | Step | Command | What it does |

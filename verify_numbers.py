@@ -73,25 +73,27 @@ def mc(path: str, la: str, lb: str, keycols):
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--verbose", action="store_true")
+    ap.add_argument("--en", action="store_true",
+                    help="English output (used at the poster session)")
     args = ap.parse_args()
 
     # ── 1. 主论文三层（reps=20，完整 48 配置分解）──
     for layer, want in (("near_rt", 0.8625), ("non_rt", 0.6610), ("smo_intent", 0.2733)):
         got = mean_success("out/episodes.csv", layer)
-        check(f"主论文 {layer}", got, want)
+        check(f"main paper {layer}", got, want)
 
     # ── 2. 解耦网格（budget 4–6）──
     P = "out/decoupled20/episodes.csv"
     for cell, want in (("c1_s0", 0.8625), ("c1_s1", 0.6498), ("c1_s2", 0.2746),
                        ("c2_s0", 0.6610), ("c2_s1", 0.6610), ("c2_s2", 0.0215),
                        ("c3_s0", 0.2733), ("c3_s1", 0.2733), ("c3_s2", 0.2733)):
-        check(f"解耦网格 {cell}", mean_success(P, cell), want)
+        check(f"decoupled grid {cell}", mean_success(P, cell), want)
 
     # ── 3. budget=20 解耦网格 ──
     B = "out/decoupled_budget20/episodes.csv"
     for cell, want in (("c1_s0", 0.9954), ("c1_s2", 0.9898), ("c2_s2", 0.8842),
                        ("c3_s0", 0.8960)):
-        check(f"budget20 网格 {cell}", mean_success(B, cell), want)
+        check(f"budget20 grid {cell}", mean_success(B, cell), want)
 
     # ── 4. 跨家族（六模型）──
     fam = [
@@ -112,8 +114,8 @@ def main() -> int:
         b = collections.defaultdict(list)
         for r in rows:
             b[r["layer"]].append(str(r["success"]) in ("1", "True"))
-        check(f"跨家族 {name} near_rt", st.mean(b["near_rt"]), wr, 2e-3)
-        check(f"跨家族 {name} 意图层", st.mean(b["smo_intent"]), ws, 2e-3)
+        check(f"cross-family {name} near_rt", st.mean(b["near_rt"]), wr, 2e-3)
+        check(f"cross-family {name} intent layer", st.mean(b["smo_intent"]), ws, 2e-3)
 
     # ── 5. 27B（三层分散在两个文件）──
     rows = []
@@ -123,21 +125,21 @@ def main() -> int:
     for r in rows:
         b[r["layer"]].append(str(r["success"]) in ("1", "True"))
     check("27B near_rt", st.mean(b["near_rt"]), 0.9333, 2e-3)
-    check("27B 意图层", st.mean(b["smo_intent"]), 0.2667, 2e-3)
+    check("27B intent layer", st.mean(b["smo_intent"]), 0.2667, 2e-3)
 
     # ── 6. 随机故障流 ──
-    check("随机流 near_rt", mean_success("out/random_faults/episodes.csv", "near_rt"), 0.9722)
-    check("随机流 意图层", mean_success("out/random_faults/episodes.csv", "smo_intent"), 0.8528)
+    check("random stream near_rt", mean_success("out/random_faults/episodes.csv", "near_rt"), 0.9722)
+    check("random stream intent layer", mean_success("out/random_faults/episodes.csv", "smo_intent"), 0.8528)
     n, bb, cc, _ = mc("out/random_faults/episodes.csv", "near_rt", "smo_intent",
                       ("scenario", "tool_granularity", "state_management",
                        "control", "guardrails", "retry", "seed"))
-    check("随机流 near vs 意图 仅后者", float(cc), 0.0)
+    check("random stream near vs intent latter only", float(cc), 0.0)
 
     # ── 7. 水网 ──
-    check("水网 near_rt", mean_success("out/water/episodes.csv", "near_rt"), 0.7565)
-    check("水网 意图层", mean_success("out/water/episodes.csv", "smo_intent"), 0.2467)
-    check("水网随机 near_rt", mean_success("out/water_random_faults/episodes.csv", "near_rt"), 0.6392)
-    check("水网随机 意图层",
+    check("water near_rt", mean_success("out/water/episodes.csv", "near_rt"), 0.7565)
+    check("water intent layer", mean_success("out/water/episodes.csv", "smo_intent"), 0.2467)
+    check("water-random near_rt", mean_success("out/water_random_faults/episodes.csv", "near_rt"), 0.6392)
+    check("water-random intent layer",
           mean_success("out/water_random_faults/episodes.csv", "smo_intent"), 0.4328)
 
     # ── 8. 护栏前沿端点（必须等于主论文的 1496 / 1842）──
@@ -149,9 +151,9 @@ def main() -> int:
             d = agg[r["guardrails"]]
             d[0] += int(r["applied_unsafe"] or 0)
             d[1] += int(r["blocked_unsafe"] or 0)
-        check("护栏 G0 放行（=主论文 1496）", float(agg["G0_none"][0]), 1496.0)
-        check("护栏 G6 拦截（=主论文 1842）", float(agg["G6_approval"][1]), 1842.0)
-        check("护栏 G5 放行（应为 0）", float(agg["G5_noprod"][0]), 0.0)
+        check("guardrail G0 pass（=main paper 1496）", float(agg["G0_none"][0]), 1496.0)
+        check("guardrail G6 block（=main paper 1842）", float(agg["G6_approval"][1]), 1842.0)
+        check("guardrail G5 pass（expect 0）", float(agg["G5_noprod"][0]), 0.0)
 
     # ── 9. 多层 ──
     M = "out/multilayer/episodes.csv"
@@ -164,7 +166,7 @@ def main() -> int:
         for name, want in (("L_near_only", 0.8625), ("L_near_non", 0.8858),
                            ("L_near_smo", 0.8842), ("L_all_three", 0.8585),
                            ("L_near_non_fresh", 0.9004), ("L_near_smo_fresh", 0.8894)):
-            check(f"多层 {name}", agg[name][0] / agg[name][1], want)
+            check(f"multilayer {name}", agg[name][0] / agg[name][1], want)
 
     # ── 10. 预算探测 ──
     if os.path.exists("out/llm_budget.csv"):
@@ -175,7 +177,7 @@ def main() -> int:
             d[0] += str(r["success"]) in ("1", "True")
         for bu, layer, want in ((4, "non_rt", 0), (6, "non_rt", 18), (10, "smo_intent", 28),
                                 (20, "near_rt", 30), (20, "smo_intent", 30)):
-            check(f"预算{bu} {layer} 解出数", float(agg[(bu, layer)][0]), float(want))
+            check(f"budget{bu} {layer} resolved", float(agg[(bu, layer)][0]), float(want))
 
     # ── 11. 预测器（最强结果）──
     PPT = "out/predictor/episodes.csv"
@@ -194,11 +196,11 @@ def main() -> int:
                                  ("c3_s2", "delta", 0.2733), ("c1_s0", "delta", 0.8625),
                                  ("c1_s1", "delta", 0.8617), ("c1_s0", "none", 0.8625)):
             a, n = agg[(cell, pred)]
-            check(f"预测器 {cell}/{pred}", a / n, want)
+            check(f"predictor {cell}/{pred}", a / n, want)
         # 关键：预测器解出的是严格超集——"仅 none 解出" 必须为 0
         for cell in ("c1_s2", "c2_s2"):
             only_none = len(sets[(cell, "none")] - sets[(cell, "delta")])
-            check(f"预测器 {cell}: 仅 none 解出", float(only_none), 0.0)
+            check(f"predictor {cell}: only none resolves", float(only_none), 0.0)
 
     # ── 12. 多层 × 预测器 ──
     MP = "out/multilayer_pred/episodes.csv"
@@ -215,7 +217,7 @@ def main() -> int:
                                  ("L_all_three", "none", 0.8585),
                                  ("L_all_three", "delta", 0.8800)):
             a, n = agg[(name, pred)]
-            check(f"多层×预测器 {name}/{pred}", a / n, want)
+            check(f"multilayer×predictor {name}/{pred}", a / n, want)
 
     # ── 13. 预测噪声敏感性 ──
     PN = "out/predictor_noise/episodes.csv"
@@ -228,7 +230,7 @@ def main() -> int:
         for cell, noise, want in (("c1_s2", 0.5, 0.8475), ("c2_s2", 0.5, 0.6610),
                                   ("c1_s2", 0.1, 0.8667), ("c1_s2", 0.0, 0.8667)):
             a, n = agg[(cell, noise)]
-            check(f"噪声 {cell}±{int(noise*100)}%", a / n, want, 1e-3)
+            check(f"noise {cell}±{int(noise*100)}%", a / n, want, 1e-3)
 
     # ── 14. 预测器在真实 LLM 上（含恒等检查）──
     PL = "out/predictor_llm/episodes.csv"
@@ -242,14 +244,14 @@ def main() -> int:
                                  ("c1_s1", "none", 0), ("c1_s1", "delta", 18),
                                  ("c1_s2", "none", 0), ("c1_s2", "delta", 18),
                                  ("c2_s2", "delta", 0), ("c3_s0", "delta", 0)):
-            check(f"LLM {cell}/{pred} 解出数", float(agg[(cell, pred)][0]), float(want))
+            check(f"LLM {cell}/{pred} resolved", float(agg[(cell, pred)][0]), float(want))
         # 恒等性质：staleness=0 时 delta 必须与 none 逐位一致
         A = {(r["scenario"], r["seed"]): str(r["success"]) in ("1", "True")
              for r in rows if r["cell"] == "c1_s0" and r["pred"] == "none"}
         B = {(r["scenario"], r["seed"]): str(r["success"]) in ("1", "True")
              for r in rows if r["cell"] == "c1_s0" and r["pred"] == "delta"}
         diff = sum(1 for k in set(A) & set(B) if A[k] != B[k])
-        check("LLM c1_s0 恒等（delta==none 逐回合）", float(diff), 0.0)
+        check("LLM c1_s0 identity（delta==none per episode）", float(diff), 0.0)
 
     # ── 15. mock 侧恒等性质（布尔 bug 的回归测试）──
     if os.path.exists(PPT):
@@ -259,14 +261,14 @@ def main() -> int:
         B = {(r["scenario"], r["seed"], r["combo"]): str(r["success"]) in ("1", "True")
              for r in rows if r["cell"] == "c1_s0" and r["pred"] == "delta"}
         diff = sum(1 for k in set(A) & set(B) if A[k] != B[k])
-        check("mock c1_s0 恒等（staleness=0 → 外推=恒等）", float(diff), 0.0)
+        check("mock c1_s0 identity（staleness=0 → extrapolation=identity）", float(diff), 0.0)
         # 外推函数本身的类型检查
         from aixnet.harness import _extrapolate
         obs = {"t": 3, "links": [{"id": "L0", "up": True, "capacity": 100.0}],
                "alarms": [{"id": "A1", "acked": False}]}
         out = _extrapolate(obs, obs, steps=0)
-        check("_extrapolate 保布尔 up", 1.0 if out["links"][0]["up"] is True else 0.0, 1.0)
-        check("_extrapolate 保布尔 acked", 1.0 if out["alarms"][0]["acked"] is False else 0.0, 1.0)
+        check("_extrapolate preserves boolean up", 1.0 if out["links"][0]["up"] is True else 0.0, 1.0)
+        check("_extrapolate preserves boolean acked", 1.0 if out["alarms"][0]["acked"] is False else 0.0, 1.0)
 
     # ── 16. 真实 LLM 上的多层（负面结果）──
     MLL = "out/multilayer_llm/episodes.csv"
@@ -277,11 +279,11 @@ def main() -> int:
             d = agg[(r["name"], r["pred"])]; d[1] += 1
             d[0] += str(r["success"]) in ("1", "True")
         for name, want in (("L_near_only", 28), ("L_near_non", 28), ("L_all_three", 28)):
-            check(f"LLM 多层 {name}/none 解出数", float(agg[(name, "none")][0]), float(want))
+            check(f"LLM multilayer {name}/none resolved", float(agg[(name, "none")][0]), float(want))
         # 技术故障必须为零
         errs = sum(1 for r in rows if r.get("err") not in (None, "", "None"))
-        check("LLM 多层：技术故障数", float(errs), 0.0)
-        check("LLM 多层：总回合数", float(len(rows)), 300.0)
+        check("LLM multilayer: technical faults", float(errs), 0.0)
+        check("LLM multilayer: total episodes", float(len(rows)), 300.0)
 
     # ── 17. 27B 多层（天花板效应）──
     M27 = "out/multilayer_27b/episodes.csv"
@@ -292,10 +294,10 @@ def main() -> int:
             d = agg[r["name"]]; d[1] += 1
             d[0] += str(r["success"]) in ("1", "True")
         for name, want in (("L_near_only", 49), ("L_near_non", 50), ("L_all_three", 50)):
-            check(f"27B 多层 {name} 解出数", float(agg[name][0]), float(want))
+            check(f"27B multilayer {name} resolved", float(agg[name][0]), float(want))
         errs = sum(1 for r in rows if r.get("err") not in (None, "", "None"))
-        check("27B 多层：技术故障数", float(errs), 0.0)
-        check("27B 多层：总回合数", float(len(rows)), 150.0)
+        check("27B multilayer: technical faults", float(errs), 0.0)
+        check("27B multilayer: total episodes", float(len(rows)), 150.0)
 
     # ── 18. 多层角色分工 ──
     MR = "out/multilayer_roles/episodes.csv"
@@ -313,13 +315,13 @@ def main() -> int:
                                    ("L_all_three", "R_policy_all", 0.8783),
                                    ("L_all_three", "R_sense_ctrl", 0.8644)):
             a, n, _m = agg[(layers, role)]
-            check(f"角色 {layers}/{role}", a / n, want)
+            check(f"role {layers}/{role}", a / n, want)
         # 关键：三层分工的"每次成功操作数"必须显著低于三层冗余
         def ops_per_solved(k):
             a, n, m = agg[k]
             return m / a
-        check("三层冗余 每次成功操作数", ops_per_solved(("L_all_three", "R_redundant")), 6.34, 0.02)
-        check("三层分工 每次成功操作数", ops_per_solved(("L_all_three", "R_policy_all")), 4.53, 0.02)
+        check("3-layer redundancy episodes per success", ops_per_solved(("L_all_three", "R_redundant")), 6.34, 0.02)
+        check("3-layer division episodes per success", ops_per_solved(("L_all_three", "R_policy_all")), 4.53, 0.02)
 
     # ── 19. 层数（1→7）与角色分工 ──
     NL = "out/nlayer/episodes.csv"
@@ -334,7 +336,7 @@ def main() -> int:
                               (5, "differentiated", 0.8575), (7, "redundant", 0.7933),
                               (7, "differentiated", 0.8438)):
             a, m = agg[(n, role)]
-            check(f"层数 {n}/{role}", a / m, want)
+            check(f"layers {n}/{role}", a / m, want)
 
     # ── 20. 层数 × 预算（机制检验）──
     NB = "out/nlayer_budget/episodes.csv"
@@ -350,33 +352,50 @@ def main() -> int:
                                  (20, 7, "redundant", 0.9996),
                                  (20, 3, "redundant", 0.9998)):
             a, m = agg[(b, n, role)]
-            check(f"预算{b}/层数{n}/{role}", a / m, want)
+            check(f"budget{b}/layers{n}/{role}", a / m, want)
         # 核心断言：7 层冗余相对单层的损失随预算单调收窄
         # （这是整篇论文"多层的代价是预算性的"那条结论的实证）
         def loss(b):
             a1, m1 = agg[(b, 1, "redundant")]
             a7, m7 = agg[(b, 7, "redundant")]
             return (a7 / m7) - (a1 / m1)
-        check("7 层损失 @budget4",  loss(4),  -0.0664, 2e-3)
-        check("7 层损失 @budget10", loss(10), -0.0120, 2e-3)
-        check("7 层损失 @budget20", loss(20), +0.0042, 2e-3)
+        check("7 layer loss @budget4",  loss(4),  -0.0664, 2e-3)
+        check("7 layer loss @budget10", loss(10), -0.0120, 2e-3)
+        check("7 layer loss @budget20", loss(20), +0.0042, 2e-3)
 
     # ── 输出 ──
-    print("=" * 78)
-    print("  综合文档数字核对")
-    print("=" * 78)
-    print(f"  ✅ 通过 {len(OK)} 项")
-    print(f"  ❌ 不符 {len(BAD)} 项")
-    print()
-    if args.verbose:
-        for lab, got, want in OK:
-            print(f"    ✅ {lab:<38} {got:.6f}  (文档 {want})")
-    if BAD:
-        print("  ── 不符明细 ──")
-        for lab, got, want in BAD:
-            print(f"    ❌ {lab:<38} 实测 {got:.6f}  文档 {want}")
+    if args.en:
+        print("=" * 78)
+        print("  Numeric audit — every headline number re-derived from the raw data")
+        print("=" * 78)
+        print(f"  PASS  {len(OK)}")
+        print(f"  FAIL  {len(BAD)}")
+        print()
+        if args.verbose:
+            for lab, got, want in OK:
+                print(f"    PASS  {lab:<38} {got:.6f}  (paper {want})")
+        if BAD:
+            print("  ── failures ──")
+            for lab, got, want in BAD:
+                print(f"    FAIL  {lab:<38} measured {got:.6f}  paper {want}")
+        else:
+            print("  All consistent — the paper text can be trusted.")
     else:
-        print("  ✅ 全部一致——可以据此动笔")
+        print("=" * 78)
+        print("  综合文档数字核对")
+        print("=" * 78)
+        print(f"  ✅ 通过 {len(OK)} 项")
+        print(f"  ❌ 不符 {len(BAD)} 项")
+        print()
+        if args.verbose:
+            for lab, got, want in OK:
+                print(f"    ✅ {lab:<38} {got:.6f}  (文档 {want})")
+        if BAD:
+            print("  ── 不符明细 ──")
+            for lab, got, want in BAD:
+                print(f"    ❌ {lab:<38} 实测 {got:.6f}  文档 {want}")
+        else:
+            print("  ✅ 全部一致——可以据此动笔")
     return 1 if BAD else 0
 
 

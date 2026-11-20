@@ -71,6 +71,26 @@ python3 run_demo.py demo-live
 
 ---
 
+## 核对每一个数字
+
+```bash
+python3 verify_numbers.py --en --verbose
+```
+
+从原始逐回合 CSV 重新算出全部 112 个核心数字，逐个与论文里印的值比对。
+
+```
+PASS  112
+FAIL  0
+
+All consistent — the paper text can be trusted.
+```
+
+每行左边是从数据重算的值，右边是论文写的值；差超过 `1e-4` 判为不符。
+不加 `--en` 时输出中文摘要，加 `--verbose` 才逐条列出。
+
+---
+
 ## 能复现什么
 
 | 步骤 | 命令 | 作用 |
